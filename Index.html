@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Love Proposal 💖</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Comic Sans MS", cursive;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.88);
+      padding: 40px;
+      border-radius: 25px;
+      box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.2);
+      width: 340px;
+      position: relative;
+    }
+
+    h1 {
+      color: #ff4d6d;
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      color: #444;
+      margin-bottom: 25px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    button {
+      padding: 12px 22px;
+      border: none;
+      border-radius: 15px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    #yesBtn {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    #yesBtn:hover {
+      background: #ff1e4d;
+      transform: scale(1.1);
+    }
+
+    #noBtn {
+      background: #555;
+      color: white;
+      position: relative;
+    }
+
+    #message {
+      margin-top: 25px;
+      font-size: 18px;
+      color: #ff1e4d;
+      font-weight: bold;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      animation: floatUp 4s linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-600px);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>I love you 💖</h1>
+      <p>Will you accept me? 🥺</p>
+
+      <div class="buttons">
+        <button id="yesBtn">Yes 😍</button>
+        <button id="noBtn">No 🙄</button>
+      </div>
+
+      <h2 id="message"></h2>
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const message = document.getElementById("message");
+
+    let funTexts = [
+      "Yes ka button udhar h madam 👈🏻😒",
+      "Oo acha attitude?? 😒",
+      "Please naa 🥺",
+      "Han kar do yrr 🥺",
+      "Maan jao yrr chijji dunga 😋👉🏻👈🏻",
+      "Itna bhaav mat khaao 😭",
+      "Dil todogi kya 💔",
+      "Okay last chance 😭💖"
+    ];
+
+    let count = 0;
+
+    function moveNoButton() {
+      const x = Math.random() * 300 - 150;
+      const y = Math.random() * 300 - 150;
+
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+
+      noBtn.innerText = funTexts[count % funTexts.length];
+      count++;
+    }
+
+    noBtn.addEventListener("mouseover", moveNoButton);
+    noBtn.addEventListener("click", moveNoButton);
+    noBtn.addEventListener("touchstart", moveNoButton);
+
+    yesBtn.addEventListener("click", () => {
+      message.innerHTML =
+        "Love you so much my pretty moon ❣️<br> You are my world & my anything 💖🌙";
+
+      noBtn.style.display = "none";
+      yesBtn.style.display = "none";
+    });
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "💖";
+
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.top = "100vh";
+      heart.style.fontSize = Math.random() * 20 + 15 + "px";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 4000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
+</body>
+</html>
