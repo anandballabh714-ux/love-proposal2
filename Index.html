@@ -6,30 +6,6 @@
   <title>Love Proposal 💖</title>
 
   <style>
-    #message {
-  margin-top: 25px;
-  font-size: 18px;
-  color: #ff1e4d;
-  font-weight: bold;
-  opacity: 0;
-  transform: scale(0.5);
-  transition: 0.6s ease;
-}
-
-#message.show {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.card.bounce {
-  animation: bounce 0.6s ease;
-}
-
-@keyframes bounce {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.08); }
-  100% { transform: scale(1); }
-}
     body {
       margin: 0;
       padding: 0;
@@ -98,13 +74,34 @@
       position: relative;
     }
 
+    /* Message Animation */
     #message {
       margin-top: 25px;
       font-size: 18px;
       color: #ff1e4d;
       font-weight: bold;
+      opacity: 0;
+      transform: scale(0.5);
+      transition: 0.6s ease;
     }
 
+    #message.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Card Bounce Animation */
+    .card.bounce {
+      animation: bounce 0.6s ease;
+    }
+
+    @keyframes bounce {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+
+    /* Floating Hearts */
     .heart {
       position: absolute;
       font-size: 20px;
@@ -143,6 +140,7 @@
     const noBtn = document.getElementById("noBtn");
     const yesBtn = document.getElementById("yesBtn");
     const message = document.getElementById("message");
+    const card = document.querySelector(".card");
 
     let funTexts = [
       "Yes ka button udhar h madam 👈🏻😒",
@@ -152,7 +150,7 @@
       "Maan jao yrr chijji dunga 😋👉🏻👈🏻",
       "Itna bhaav mat khaao 😭",
       "Dil todogi kya 💔",
-      "Okay last chance 😭💖"
+      "yes pe click karo chup chap 😏💖"
     ];
 
     let count = 0;
@@ -167,18 +165,24 @@
       count++;
     }
 
+    // For desktop + mobile
     noBtn.addEventListener("mouseover", moveNoButton);
     noBtn.addEventListener("click", moveNoButton);
     noBtn.addEventListener("touchstart", moveNoButton);
 
+    // Yes button click
     yesBtn.addEventListener("click", () => {
       message.innerHTML =
         "Love you so much my pretty moon ❣️<br> You are my world & my anything 💖🌙";
+
+      message.classList.add("show");
+      card.classList.add("bounce");
 
       noBtn.style.display = "none";
       yesBtn.style.display = "none";
     });
 
+    // Heart animation
     function createHeart() {
       const heart = document.createElement("div");
       heart.classList.add("heart");
@@ -195,7 +199,7 @@
       }, 4000);
     }
 
-    setInterval(createHeart, 300);
+    setInterval(createHeart, 250);
   </script>
 </body>
 </html>
